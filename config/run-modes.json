@@ -1,0 +1,33 @@
+{
+  "$schema": "../schemas/run-modes.schema.json",
+  "modes": {
+    "quick": {
+      "evaluators": 1,
+      "runs_per_model": 1,
+      "baseline_lenses": true,
+      "specialist_lenses": "coordinator_selected_if_obvious",
+      "skeptic": "separate_inline_pass",
+      "synthesis": false,
+      "purpose": "Early, narrow, low-cost evaluation"
+    },
+    "standard": {
+      "evaluators": 1,
+      "runs_per_model": 1,
+      "baseline_lenses": true,
+      "specialist_lenses": "coordinator_selected",
+      "skeptic": "fresh_context",
+      "synthesis": false,
+      "adaptive_replication": true,
+      "purpose": "Default for consequential workflow evaluation"
+    },
+    "deep": {
+      "evaluators": "two_or_more_independent",
+      "runs_per_model": "one_or_more",
+      "baseline_lenses": true,
+      "specialist_lenses": "coordinator_selected",
+      "skeptic": "fresh_context_per_run",
+      "synthesis": true,
+      "purpose": "High-impact decisions, disputed claims, or structural uncertainty"
+    }
+  }
+}

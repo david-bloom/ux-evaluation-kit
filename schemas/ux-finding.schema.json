@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/david-bloom/ux-evaluation-kit/schemas/ux-finding.schema.json",
+  "title": "UX Finding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "finding_id", "run_id", "claim", "user_model_ids", "task_id", "lens_ids", "evidence_basis", "evidence", "impact", "confidence", "alternative_interpretations", "validation_needed", "skeptic_review"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "finding_id": {"type": "string", "pattern": "^[A-Z0-9-]+$"},
+    "run_id": {"type": "string"},
+    "claim": {"type": "string", "minLength": 1},
+    "user_model_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "task_id": {"type": "string"},
+    "lens_ids": {"type": "array", "minItems": 1, "items": {"type": "string"}, "uniqueItems": true},
+    "evidence_basis": {"type": "array", "minItems": 1, "items": {"enum": ["observed", "analytical", "simulated", "human_validated"]}, "uniqueItems": true},
+    "evidence": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["reference", "state", "action", "result"], "properties": {"reference": {"type": "string"}, "state": {"type": "string"}, "action": {"type": "string"}, "result": {"type": "string"}}, "additionalProperties": false}},
+    "impact": {"type": "array", "minItems": 1, "items": {"enum": ["blocks_completion", "causes_error", "causes_backtracking", "increases_decision_burden", "causes_delay", "reduces_confidence", "accessibility_barrier", "minor"]}, "uniqueItems": true},
+    "confidence": {"enum": ["high", "medium", "low", "speculative"]},
+    "alternative_interpretations": {"type": "array", "items": {"type": "string"}},
+    "validation_needed": {"type": "string"},
+    "skeptic_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["disposition", "rationale", "reviewed_claim"],
+      "properties": {
+        "disposition": {"enum": ["pending", "retain", "weaken", "reclassify_as_hypothesis", "reject"]},
+        "rationale": {"type": "string"},
+        "reviewed_claim": {"type": "string"}
+      }
+    }
+  }
+}

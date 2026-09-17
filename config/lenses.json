@@ -1,0 +1,162 @@
+{
+  "$schema": "../schemas/lens-registry.schema.json",
+  "version": "0.1.0",
+  "lenses": [
+    {
+      "id": "cognitive_walkthrough",
+      "name": "Cognitive Walkthrough",
+      "tier": "baseline",
+      "primary_question": "Can the configured user identify, perform, and understand the next action at each step?",
+      "applies_when": ["goal-directed workflows", "learnability matters"],
+      "required_context": ["user_model", "task_model", "step_trace"],
+      "procedure": ["For each step identify the user's goal", "Assess action visibility", "Assess mapping between control and goal", "Assess feedback interpretation"],
+      "allowed_claims": ["bounded learnability hypothesis", "step-specific comprehension issue"],
+      "forbidden_claims": ["all users will be confused", "human behavior was observed without a study"],
+      "output_types": ["finding", "validation_question"]
+    },
+    {
+      "id": "interaction_state",
+      "name": "Interaction and State",
+      "tier": "baseline",
+      "primary_question": "Are actions, feedback, transitions, persistence, and current system state understandable?",
+      "applies_when": ["interactive product", "multi-state workflow"],
+      "required_context": ["interface_states", "step_trace"],
+      "procedure": ["Map action to transition", "Check status visibility", "Check persistence and reversibility", "Identify ambiguous or hidden states"],
+      "allowed_claims": ["state ambiguity", "feedback gap", "transition mismatch"],
+      "forbidden_claims": ["preference-only visual critique"],
+      "output_types": ["finding", "state_model_hypothesis"]
+    },
+    {
+      "id": "error_recovery",
+      "name": "Error and Recovery",
+      "tier": "baseline",
+      "primary_question": "Can users prevent, recognize, escape, undo, retry, and recover from mistakes?",
+      "applies_when": ["user input", "navigation", "irreversible or consequential action"],
+      "required_context": ["task_model", "interface_states"],
+      "procedure": ["Identify likely slips and misconceptions", "Test safe deviations when authorized", "Inspect error feedback", "Assess recovery path and data preservation"],
+      "allowed_claims": ["observed recovery failure", "analytical risk with explicit basis"],
+      "forbidden_claims": ["performing destructive tests without authorization"],
+      "output_types": ["finding", "test_scenario"]
+    },
+    {
+      "id": "core_heuristics",
+      "name": "Core Usability Heuristics",
+      "tier": "baseline",
+      "primary_question": "Which established usability principles are implicated by specific interface evidence?",
+      "applies_when": ["any interface review"],
+      "required_context": ["interface_evidence"],
+      "procedure": ["Name the principle", "Point to specific evidence", "Describe bounded consequence", "Separate violation from preference"],
+      "allowed_claims": ["principle-linked analytical finding"],
+      "forbidden_claims": ["generic checklist dump", "unsupported user prediction"],
+      "output_types": ["finding"]
+    },
+    {
+      "id": "accessibility_baseline",
+      "name": "Accessibility Baseline",
+      "tier": "baseline",
+      "primary_question": "Are evident barriers present in semantics, keyboard use, labels, targets, contrast, motion, or alternatives?",
+      "applies_when": ["digital interface"],
+      "required_context": ["interface_evidence"],
+      "procedure": ["Inspect available semantic evidence", "Check keyboard-visible paths when possible", "Flag evident perceptual or motor barriers", "State untested areas"],
+      "allowed_claims": ["evident barrier", "requires specialist testing"],
+      "forbidden_claims": ["WCAG conformance certification", "screen-reader compatibility without testing"],
+      "output_types": ["finding", "test_need"]
+    },
+    {
+      "id": "ooux",
+      "name": "Object-Oriented UX",
+      "tier": "specialist",
+      "primary_question": "Do objects, relationships, attributes, and actions match the user's domain model?",
+      "applies_when": ["multiple domain objects", "cross-object workflow", "reusable content"],
+      "required_context": ["domain_objects", "task_model", "navigation_or_flow"],
+      "procedure": ["Inventory objects", "Map relationships", "Map attributes", "Map actions", "Compare interface representation to task language"],
+      "allowed_claims": ["object-model mismatch hypothesis", "relationship visibility issue"],
+      "forbidden_claims": ["surface redesign presented as necessary truth"],
+      "output_types": ["structural_hypothesis", "finding", "research_question"]
+    },
+    {
+      "id": "information_architecture",
+      "name": "Information Architecture",
+      "tier": "specialist",
+      "primary_question": "Can users predict where information and actions live and how they are organized?",
+      "applies_when": ["navigation", "content hierarchy", "findability problem"],
+      "required_context": ["content_inventory_or_navigation", "user_model", "task_model"],
+      "procedure": ["Map hierarchy", "Inspect labels and grouping", "Trace findability paths", "Identify competing classification schemes"],
+      "allowed_claims": ["findability hypothesis", "label/hierarchy mismatch"],
+      "forbidden_claims": ["claiming card-sort validation without participants"],
+      "output_types": ["structural_hypothesis", "finding", "research_question"]
+    },
+    {
+      "id": "behavioral_ux",
+      "name": "Behavioral UX",
+      "tier": "specialist",
+      "primary_question": "Do motivation, ability, prompts, timing, feedback, and ethics support the intended behavior?",
+      "applies_when": ["repeated behavior", "onboarding", "adoption", "habit or adherence goal"],
+      "required_context": ["target_behavior", "user_context", "ethical_constraints"],
+      "procedure": ["Define observable target behavior", "Examine motivation and ability", "Examine prompt timing", "Examine feedback and reinforcement", "Check autonomy and manipulation risk"],
+      "allowed_claims": ["behavioral mechanism hypothesis", "ethical risk"],
+      "forbidden_claims": ["claiming actual behavior change without behavioral data"],
+      "output_types": ["structural_hypothesis", "experiment"]
+    },
+    {
+      "id": "expert_efficiency",
+      "name": "Expert Efficiency",
+      "tier": "specialist",
+      "primary_question": "Does learned, repeated use remain fast and controllable without sacrificing novice comprehension?",
+      "applies_when": ["frequent workflows", "professional tools", "high-volume operations"],
+      "required_context": ["experienced_user_model", "task_frequency", "step_trace"],
+      "procedure": ["Count repeated decisions and actions", "Identify batch/shortcut opportunities", "Inspect interruption and resumption", "Surface novice/expert tradeoffs"],
+      "allowed_claims": ["efficiency cost", "novice-expert tradeoff"],
+      "forbidden_claims": ["removing safeguards solely to reduce clicks"],
+      "output_types": ["finding", "tradeoff"]
+    },
+    {
+      "id": "trust_comprehension",
+      "name": "Trust and Comprehension",
+      "tier": "specialist",
+      "primary_question": "Can users understand what the system did, its consequences, and how much confidence to place in it?",
+      "applies_when": ["AI output", "identity", "payments", "grades", "health", "irreversible action"],
+      "required_context": ["system_behavior", "consequences", "user_model"],
+      "procedure": ["Map user-visible explanations", "Inspect preview and confirmation", "Inspect provenance and uncertainty", "Assess correction and recourse"],
+      "allowed_claims": ["calibration risk", "comprehension gap", "recourse gap"],
+      "forbidden_claims": ["trust score"],
+      "output_types": ["finding", "risk", "validation_question"]
+    },
+    {
+      "id": "accessibility_deep",
+      "name": "Accessibility Deep Review",
+      "tier": "specialist",
+      "primary_question": "What barriers emerge under specified disability, assistive-technology, and environmental conditions?",
+      "applies_when": ["accessibility risk", "baseline finding", "compliance-sensitive product"],
+      "required_context": ["target_standards", "assistive_technology_plan", "testable_build"],
+      "procedure": ["Define supported conditions", "Run manual and tool-assisted checks", "Record exact evidence", "Separate conformance evidence from design recommendations"],
+      "allowed_claims": ["tested barrier", "bounded standards mapping"],
+      "forbidden_claims": ["full compliance certification from incomplete review"],
+      "output_types": ["finding", "test_result"]
+    },
+    {
+      "id": "service_journey",
+      "name": "Service Journey",
+      "tier": "specialist",
+      "primary_question": "Do cross-channel, handoff, backstage, and recovery dependencies support the end-to-end outcome?",
+      "applies_when": ["multi-channel journey", "human support", "offline dependency"],
+      "required_context": ["journey_scope", "channels", "actors"],
+      "procedure": ["Map stages and channels", "Map handoffs and ownership", "Identify backstage dependencies", "Inspect failure and recovery across boundaries"],
+      "allowed_claims": ["handoff risk", "journey gap", "ownership ambiguity"],
+      "forbidden_claims": ["claims about unobserved backstage operations stated as fact"],
+      "output_types": ["structural_hypothesis", "finding"]
+    },
+    {
+      "id": "jobs_to_be_done",
+      "name": "Jobs to Be Done",
+      "tier": "specialist",
+      "primary_question": "Does the workflow help the user make progress in the situation that caused them to hire it?",
+      "applies_when": ["product strategy", "workflow-value mismatch", "alternative behaviors matter"],
+      "required_context": ["situation", "desired_progress", "alternatives"],
+      "procedure": ["Define situation and desired progress", "Identify functional/social/emotional forces", "Compare current workflow to alternatives", "Form interview questions"],
+      "allowed_claims": ["job hypothesis", "progress barrier hypothesis"],
+      "forbidden_claims": ["validated job without customer research"],
+      "output_types": ["structural_hypothesis", "research_question"]
+    }
+  ]
+}

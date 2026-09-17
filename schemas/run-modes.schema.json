@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["modes"],
+  "properties": {"$schema": {"type": "string"}, "modes": {"type": "object", "required": ["quick", "standard", "deep"]}},
+  "additionalProperties": false
+}

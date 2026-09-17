@@ -1,0 +1,16 @@
+{
+  "schema_version": "0.1.0",
+  "finding_id": "UX-EX-001",
+  "run_id": "example-assessment-authoring",
+  "claim": "The label Generate may not communicate that the action creates an assessment from selected questions for a first-time user.",
+  "user_model_ids": ["first-time-ap-teacher"],
+  "task_id": "create-unit-4-assessment",
+  "lens_ids": ["cognitive_walkthrough", "ooux"],
+  "evidence_basis": ["analytical", "simulated"],
+  "evidence": [{"reference": "illustrative-state-1", "state": "Ten questions selected in the question bank.", "action": "User must choose Generate to continue.", "result": "The action creates an assessment editor, but the destination object is absent from the label."}],
+  "impact": ["increases_decision_burden", "causes_delay"],
+  "confidence": "speculative",
+  "alternative_interpretations": ["Generate may be established product terminology or clarified by nearby text not represented in the example."],
+  "validation_needed": "Observe first-time teachers and ask what they expect Generate to do before selecting it.",
+  "skeptic_review": {"disposition": "reclassify_as_hypothesis", "rationale": "The object-label mismatch is analytically plausible, but the example contains no observed human confusion or complete interface context.", "reviewed_claim": "First-time teachers may not predict that Generate creates an assessment from the selected questions."}
+}

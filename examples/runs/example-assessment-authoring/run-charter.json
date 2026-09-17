@@ -1,0 +1,49 @@
+{
+  "schema_version": "0.1.0",
+  "run_id": "example-assessment-authoring",
+  "status": "frozen",
+  "mode": "standard",
+  "target": {"product": "Example learning product", "surface": "Assessment authoring workflow", "version": "illustrative-static-example"},
+  "boundaries": {"start": "Question bank", "end": "Assessment published"},
+  "users": {
+    "primary": {
+      "id": "first-time-ap-teacher",
+      "role": "AP teacher",
+      "domain_expertise": "high",
+      "product_expertise": "none",
+      "frequency": "first use",
+      "motivation": "high",
+      "time_pressure": "moderate",
+      "technical_confidence": "medium",
+      "mental_models": ["Google Classroom", "College Board"],
+      "terminology": ["assessment terminology familiar", "product terminology unfamiliar"],
+      "accessibility_constraints": []
+    },
+    "secondary": []
+  },
+  "task": {
+    "id": "create-unit-4-assessment",
+    "goal": "Create a 10-question Unit 4 assessment from existing questions and publish it.",
+    "starting_state": "Signed in at the question bank with 35 students already imported.",
+    "goal_state": "A 10-question Unit 4 assessment exists in published state.",
+    "information_available": ["Unit name", "desired question count", "existing question bank"],
+    "information_withheld": ["No product-specific instructions"],
+    "frequency": "weekly after onboarding",
+    "failure_consequences": "Lost preparation time and possible uncertainty about whether the assessment is available.",
+    "time_sensitivity": "Needed for tomorrow",
+    "criticality": "medium",
+    "acceptable_paths": ["Any path that uses existing questions and creates the published assessment without data loss"]
+  },
+  "usability_priorities": {"primary": ["learnability", "comprehension", "confidence", "error recovery"], "secondary": ["efficiency"]},
+  "lenses": {
+    "baseline": ["cognitive_walkthrough", "interaction_state", "error_recovery", "core_heuristics", "accessibility_baseline"],
+    "specialist": ["ooux", "information_architecture"],
+    "excluded_with_reason": [
+      {"lens_id": "behavioral_ux", "reason": "The run evaluates one authoring task rather than adoption or repeated behavior."},
+      {"lens_id": "service_journey", "reason": "The defined task remains within one product surface."}
+    ]
+  },
+  "execution": {"evidence_mode": "static", "models": ["illustrative-model"], "runs_per_model": 1, "skeptic": "fresh_context", "synthesis": false},
+  "evidence": {"sources": ["Illustrative states described in observations/trace.json"], "distinguish_basis": true, "preserve_disagreement": true},
+  "excluded": ["Student assignment", "Grading", "Claims about actual teacher behavior"]
+}

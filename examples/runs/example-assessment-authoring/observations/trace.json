@@ -1,0 +1,8 @@
+{
+  "run_id": "example-assessment-authoring",
+  "limitations": ["Illustrative static example; no live product was exercised."],
+  "steps": [
+    {"step": 1, "state": "Question bank shows questions and a Generate action.", "action": "Select ten Unit 4 questions and activate Generate.", "expectation": "Move to an assessment containing the selected questions.", "result": "An assessment editor opens with the ten questions.", "artifact_reference": "illustrative-state-1", "completion_impact": "progressed"},
+    {"step": 2, "state": "Assessment editor shows Save and Publish actions.", "action": "Activate Publish.", "expectation": "Make the assessment available in the product without assigning it.", "result": "A confirmation reports that the assessment is published.", "artifact_reference": "illustrative-state-2", "completion_impact": "completed"}
+  ]
+}
